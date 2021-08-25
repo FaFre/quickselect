@@ -4,10 +4,15 @@ import 'package:collection/collection.dart';
 
 typedef compareTo<E> = int Function(E a, E b);
 
-void quickselect<E extends Comparable>(List<E> arr, int k,
+void quickselect<E>(List<E> arr, int k,
     {int? left, int? right, compareTo<E>? compare}) {
-  _quickselectStep(arr, k, left ?? 0, right ?? (arr.length - 1),
-      compare ?? (E a, E b) => a.compareTo(b));
+  _quickselectStep(
+      arr,
+      k,
+      left ?? 0,
+      right ?? (arr.length - 1),
+      compare ??
+          (E a, E b) => Comparable.compare(a as Comparable, b as Comparable));
 }
 
 void _quickselectStep<E>(
