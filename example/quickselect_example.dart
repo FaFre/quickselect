@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:collection/collection.dart';
 import 'package:quickselect/quickselect.dart';
 
 void main() {
@@ -13,4 +14,26 @@ void main() {
 
   s.stop();
   print('quickselect took ${s.elapsedMilliseconds}');
+
+  arr.shuffle(random);
+
+  s
+    ..reset()
+    ..start();
+
+  arr.sort();
+
+  s.stop();
+  print('.sort() sort took ${s.elapsedMilliseconds}');
+
+  arr.shuffle();
+
+  s
+    ..reset()
+    ..start();
+
+  arr.sortRange(0, N - 1, (a, b) => Comparable.compare(a, b));
+
+  s.stop();
+  print('.quickSort() sort took ${s.elapsedMilliseconds}');
 }
